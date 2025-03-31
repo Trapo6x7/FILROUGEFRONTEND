@@ -1,8 +1,8 @@
 import { Inter, Manrope } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
-import Navbar from "@/components/layout/navbar";
-import Footer from "@/components/layout/footer";
+import Navbar from "@/src/components/layout/navbar";
+import Footer from "@/src/components/layout/footer";
 
 const inter = Inter({
   variable: "--font-inter",

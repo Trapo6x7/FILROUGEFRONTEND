@@ -1,4 +1,4 @@
-import BookCard from "@/components/books/book-card";
+import BookCard from "@/src/components/books/book-card";
 
 // Données fictives pour l'exemple
 const mockBooks = [

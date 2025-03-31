@@ -1,8 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { formatPrice } from "@/lib/utils";
+import { Badge } from "@/src/components/ui/badge";
+import { Card, CardContent, CardFooter } from "@/src/components/ui/card";
+import { formatPrice } from "@/src/lib/utils";
 
 export default function BookCard({ book }) {
   return (

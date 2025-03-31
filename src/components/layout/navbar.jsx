@@ -3,22 +3,22 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/src/components/ui/button";
 import {
   Sheet,
   SheetContent,
   SheetTrigger,
   SheetTitle,
-} from "@/components/ui/sheet";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ModeToggle } from "@/components/theme/mode-toggle";
-import { useAuth } from "@/context/auth-context";
+} from "@/src/components/ui/sheet";
+import { Avatar, AvatarFallback, AvatarImage } from "@/src/components/ui/avatar";
+import { ModeToggle } from "@/src/components/theme/mode-toggle";
+import { useAuth } from "@/src/context/auth-context";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from "@/src/components/ui/dropdown-menu";
 
 export default function Navbar() {
   const pathname = usePathname();
