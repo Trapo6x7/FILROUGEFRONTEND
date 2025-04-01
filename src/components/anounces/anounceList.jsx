@@ -52,7 +52,7 @@ const AnouncesList = () => {
             {anounces.map((anounce) => (
                 <article
                     key={anounce.id}
-                    className="bg-[#ffe47b] rounded-md flex flex-col justify-between p-5 gap-3 shadow-lg w-[22%]" // 22% pour 4 annonces par ligne avec un gap
+                    className="bg-[#ffe47b] rounded-md flex flex-col justify-between p-5 gap-3 w-[22%]" // 22% pour 4 annonces par ligne avec un gap
                 >
                     {/* Image */}
                     <div className="flex justify-center">

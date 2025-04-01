@@ -16,10 +16,10 @@ export default function Home() {
         <article>caroussel</article>
       </section>
 
-      <section className="bg-[#f9f6f1]  p-10 flex gap-5 justify-between flex-wrap">
+      <section className="bg-[#ffe47b]   p-10 flex gap-5 justify-between flex-wrap">
        <AnouncesList/>
       </section>
-      <section className="bg-[#333333] flex justify-around">
+      <section className="bg-[#f9f6f1]  flex justify-around">
         <article className="text-[#9ba2ff] w-1/3 flex flex-col items-center justify-center p-10 gap-2">
           <img src="./asset/iconsearch.png" alt="" className="w-20" />
           <h2 className="font-bold text-md">
