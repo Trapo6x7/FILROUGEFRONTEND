@@ -2,31 +2,57 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="border-t bg-card">
-      <div className="mx-auto max-w-7xl px-6 py-12 md:flex md:items-center md:justify-between lg:px-8">
-        <div className="flex justify-center space-x-6 md:order-2">
-          <Link href="/about" className="text-sm text-muted-foreground hover:text-foreground">
-            À propos
-          </Link>
-          <Link href="/privacy" className="text-sm text-muted-foreground hover:text-foreground">
-            Politique de confidentialité
-          </Link>
-          <Link href="/terms" className="text-sm text-muted-foreground hover:text-foreground">
-            Conditions d&apos;utilisation
-          </Link>
-        </div>
-        <div className="mt-8 md:order-1 md:mt-0">
-          <Link href="/" className="flex items-center justify-center md:justify-start">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6 text-primary">
-              <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path>
-            </svg>
-            <span className="ml-2 text-lg font-bold font-manrope">BookMarket</span>
-          </Link>
-          <p className="mt-2 text-center text-sm text-muted-foreground md:text-left">
-            &copy; {new Date().getFullYear()} BookMarket. Tous droits réservés.
-          </p>
-        </div>
-      </div>
-    </footer>
+<footer className="bg-[#333333] p-10 text-off-white flex justify-between">
+
+<div className="flex flex-col gap-24">
+    <div className="text-lg">
+        <h2>BookMarket</h2>
+    </div>
+    <div className="flex gap-2 text-xs">
+        <a href="" alt="">
+            <p>Tous les produits</p>
+        </a>
+        <p>/</p>
+        <a href="" alt="">
+            <p>Idées lecture</p>
+        </a>
+        <p>/</p>
+        <a href="" alt="">
+            <p>Notre sélection</p>
+        </a>
+        <p>/</p>
+
+        <a href="" alt="">
+            <p>Promo</p>
+        </a>
+        <p>/</p>
+        <a href="" alt="">
+            <p>Meilleures ventes</p>
+        </a>
+        <p>/</p>
+        <a href="" alt="">
+            <p>Coup de coeur</p>
+        </a>
+        <p>/</p>
+        <a href="" alt="">
+            <p>Aide</p>
+        </a>
+    </div>
+</div>
+
+<div className="flex flex-col justify-end items-end gap-5">
+    <div className="text-end">
+        <p className="text-xs">Contact us</p>
+        <p className="text-md">+1 999 888-76-54</p>
+    </div>
+
+    <div className="text-end">
+        <p className="text-xs">Email</p>
+        <p className="text-md">hello@bookmarket.com</p>
+    </div>
+</div>
+
+
+</footer>
   );
 }

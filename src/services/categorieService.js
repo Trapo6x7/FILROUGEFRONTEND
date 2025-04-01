@@ -9,6 +9,8 @@ export const getCategories = async () => {
             throw new Error('Erreur lors de la récupération des livres');
         }
         const data = await response.json();
+ 
+        
         return data;
     } catch (error) {
         console.error('Erreur:', error);

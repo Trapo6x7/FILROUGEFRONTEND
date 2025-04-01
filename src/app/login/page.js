@@ -55,23 +55,23 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="flex flex-col items-center justify-between p-6 md:p-24">
-      <div className="space-y-6">
-        <div className="space-y-2 text-center">
-          <h1 className="text-3xl font-bold">Connexion</h1>
-          <p className="text-muted-foreground">
+    <main className="flex flex-col items-center justify-center min-h-screen bg-[#ffe47b] p-10">
+      <div className="flex flex-col items-center justify-center w-full max-w-md bg-[#f9f6f1] p-8 rounded-md shadow-md gap-6">
+        <div className="text-center">
+          <h1 className="text-3xl font-bold text-[#333333]">Connexion</h1>
+          <p className="text-sm text-[#333333]">
             Entrez vos identifiants pour vous connecter à votre compte
           </p>
         </div>
 
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="w-full flex flex-col gap-4">
             <FormField
               control={form.control}
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Adresse email</FormLabel>
+                  <FormLabel className="text-[#333333]">Adresse email</FormLabel>
                   <FormControl>
                     <Input
                       placeholder="exemple@email.com"
@@ -79,6 +79,7 @@ export default function LoginPage() {
                       autoComplete="email"
                       disabled={isLoading}
                       {...field}
+                      className="w-full border border-[#333333] rounded-md p-2"
                     />
                   </FormControl>
                   <FormMessage />
@@ -91,7 +92,7 @@ export default function LoginPage() {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Mot de passe</FormLabel>
+                  <FormLabel className="text-[#333333]">Mot de passe</FormLabel>
                   <FormControl>
                     <Input
                       placeholder="••••••••"
@@ -99,6 +100,7 @@ export default function LoginPage() {
                       autoComplete="current-password"
                       disabled={isLoading}
                       {...field}
+                      className="w-full border border-[#333333] rounded-md p-2"
                     />
                   </FormControl>
                   <FormMessage />
@@ -111,7 +113,7 @@ export default function LoginPage() {
                 control={form.control}
                 name="rememberMe"
                 render={({ field }) => (
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-center gap-2">
                     <Checkbox
                       id="rememberMe"
                       checked={field.value}
@@ -120,7 +122,7 @@ export default function LoginPage() {
                     />
                     <label
                       htmlFor="rememberMe"
-                      className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                      className="text-sm font-medium text-[#333333]"
                     >
                       Se souvenir de moi
                     </label>
@@ -130,24 +132,28 @@ export default function LoginPage() {
 
               <Link
                 href="/forgot-password"
-                className="text-sm font-medium text-primary hover:underline"
+                className="text-sm font-medium text-[#9ba2ff] hover:underline"
               >
                 Mot de passe oublié?
               </Link>
             </div>
 
-            <Button type="submit" className="w-full" disabled={isLoading}>
+            <Button
+              type="submit"
+              className="w-full bg-[#333333] text-[#f9f6f1] hover:bg-[#444444] p-2 rounded-md"
+              disabled={isLoading}
+            >
               {isLoading ? "Connexion en cours..." : "Se connecter"}
             </Button>
           </form>
         </Form>
 
         <div className="text-center">
-          <p className="text-sm text-muted-foreground">
+          <p className="text-sm text-[#333333]">
             Pas encore de compte?{" "}
             <Link
               href="/register"
-              className="font-medium text-primary hover:underline"
+              className="font-medium text-[#9ba2ff] hover:underline"
             >
               S&apos;inscrire
             </Link>
