@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // Il est préférable de ne pas hardcoder l'URL de l'API ici. Utilisez une variable d'environnement ou un fichier de configuration.
-const API_URL = "https://localhost:8000/api";
+const API_URL = "http://localhost:8000/api";
 
 // Configuration Axios
 const api = axios.create({
@@ -33,9 +33,18 @@ export const AuthService = {
    */
   register: async (userData) => {
     try {
-      const response = await api.post("/register", userData);
+      const transformedData = {
+        email: userData.email,
+        password: userData.password,
+        firstname: userData.firstName,
+        lastname: userData.lastName,
+        username: userData.username, // Add this line
+      };
+
+      const response = await api.post("/register", transformedData);
       return response.data;
     } catch (error) {
+      console.error("Détails de l'erreur:", error.response?.data);
       throw error.response?.data || { message: "Erreur d'inscription" };
     }
   },
@@ -52,12 +61,12 @@ export const AuthService = {
         username: email, // Souvent, l'API JWT attend "username" même si c'est un email
         password,
       });
-      
+
       // Stocke le token JWT dans le localStorage
       if (response.data.token) {
         localStorage.setItem("token", response.data.token);
       }
-      
+
       return response.data;
     } catch (error) {
       throw error.response?.data || { message: "Erreur de connexion" };
@@ -88,7 +97,11 @@ export const AuthService = {
       const response = await api.get("/user/me");
       return response.data;
     } catch (error) {
-      throw error.response?.data || { message: "Erreur d'obtention des données utilisateur" };
+      throw (
+        error.response?.data || {
+          message: "Erreur d'obtention des données utilisateur",
+        }
+      );
     }
   },
 };

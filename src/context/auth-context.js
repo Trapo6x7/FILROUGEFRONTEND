@@ -3,6 +3,7 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import AuthService from "@/src/services/auth-service";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner"; // Changed this import
 
 const AuthContext = createContext({});
 
@@ -10,7 +11,6 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
-  const { toast } = useToast();
 
   useEffect(() => {
     const initAuth = async () => {
@@ -29,24 +29,20 @@ export const AuthProvider = ({ children }) => {
 
     initAuth();
   }, []);
-
+  
   const login = async (email, password) => {
     try {
       setLoading(true);
       const response = await AuthService.login(email, password);
       setUser(response.user || { email });
-      toast({
-        title: "Connexion réussie",
-        description: "Vous êtes maintenant connecté.",
-        status: "success",
+      toast.success("Connexion réussie", {
+        description: "Vous êtes maintenant connecté."
       });
       return { success: true };
     } catch (error) {
       console.error("Erreur de connexion", error);
-      toast({
-        title: "Échec de la connexion",
-        description: error.message || "Identifiants incorrects",
-        variant: "destructive",
+      toast.error("Échec de la connexion", {
+        description: error.message || "Identifiants incorrects"
       });
       return { success: false, error };
     } finally {
@@ -58,18 +54,14 @@ export const AuthProvider = ({ children }) => {
     try {
       setLoading(true);
       await AuthService.register(userData);
-      toast({
-        title: "Inscription réussie",
-        description: "Votre compte a été créé avec succès. Vous pouvez maintenant vous connecter.",
-        status: "success",
+      toast.success("Inscription réussie", {
+        description: "Votre compte a été créé avec succès. Vous pouvez maintenant vous connecter."
       });
       return { success: true };
     } catch (error) {
       console.error("Erreur d'inscription", error);
-      toast({
-        title: "Échec de l'inscription",
-        description: error.message || "Une erreur est survenue lors de l'inscription",
-        variant: "destructive",
+      toast.error("Échec de l'inscription", {
+        description: error.message || "Une erreur est survenue lors de l'inscription"
       });
       return { success: false, error };
     } finally {
@@ -80,12 +72,12 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     AuthService.logout();
     setUser(null);
-    toast({
-      title: "Déconnexion",
-      description: "Vous avez été déconnecté avec succès.",
+    toast.success("Déconnexion", {
+      description: "Vous avez été déconnecté avec succès."
     });
     router.push("/");
   };
+
 
   return (
     <AuthContext.Provider

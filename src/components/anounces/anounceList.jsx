@@ -66,7 +66,7 @@ const AnouncesList = () => {
                     {/* Contenu fixe */}
                     <div className="flex flex-col h-40 justify-between">
                         <h3 className="text-sm font-extralight text-[#333333]">
-                            {anounce.author}
+                            {anounce.bookDetails.author.name}
                         </h3>
                         <h2 className="text-lg font-extrabold text-[#333333] truncate">
                             {anounce.bookDetails.title}

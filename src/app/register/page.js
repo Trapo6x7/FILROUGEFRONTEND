@@ -21,24 +21,25 @@ import { Checkbox } from "@/src/components/ui/checkbox";
 
 // Schéma de validation
 const registerSchema = z
-  .object({
-    firstName: z
-      .string()
-      .min(2, "Le prénom doit contenir au moins 2 caractères"),
-    lastName: z.string().min(2, "Le nom doit contenir au moins 2 caractères"),
-    email: z.string().email("Adresse email invalide"),
-    password: z
-      .string()
-      .min(6, "Le mot de passe doit contenir au moins 6 caractères"),
-    confirmPassword: z.string(),
-    acceptTerms: z.boolean().refine((val) => val === true, {
-      message: "Vous devez accepter les conditions d'utilisation",
-    }),
-  })
-  .refine((data) => data.password === data.confirmPassword, {
-    message: "Les mots de passe ne correspondent pas",
-    path: ["confirmPassword"],
-  });
+.object({
+  firstName: z
+    .string()
+    .min(2, "Le prénom doit contenir au moins 2 caractères"),
+  lastName: z.string().min(2, "Le nom doit contenir au moins 2 caractères"),
+  username: z.string().min(3, "Le pseudo doit contenir au moins 3 caractères"),
+  email: z.string().email("Adresse email invalide"),
+  password: z
+    .string()
+    .min(6, "Le mot de passe doit contenir au moins 6 caractères"),
+  confirmPassword: z.string(),
+  acceptTerms: z.boolean().refine((val) => val === true, {
+    message: "Vous devez accepter les conditions d'utilisation",
+  }),
+})
+.refine((data) => data.password === data.confirmPassword, {
+  message: "Les mots de passe ne correspondent pas",
+  path: ["confirmPassword"],
+});
 
   export default function RegisterPage() {
     const router = useRouter();
@@ -50,6 +51,7 @@ const registerSchema = z
       defaultValues: {
         firstName: "",
         lastName: "",
+        username: "",
         email: "",
         password: "",
         confirmPassword: "",
@@ -63,14 +65,19 @@ const registerSchema = z
         const userData = {
           firstName: data.firstName,
           lastName: data.lastName,
+          username: data.username,
           email: data.email,
           password: data.password,
         };
-  
+    
+        console.log("Données envoyées:", userData); // Pour déboguer
+        
         const result = await register(userData);
         if (result.success) {
           router.push("/login");
         }
+      } catch (error) {
+        console.error("Erreur complète:", error);
       } finally {
         setIsLoading(false);
       }
@@ -130,6 +137,25 @@ const registerSchema = z
                 />
               </div>
   
+              <FormField
+                control={form.control}
+                name="username"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-[#333333]">Pseudo</FormLabel>
+                    <FormControl>
+                      <Input
+                       placeholder="JeanGui"
+                       autoComplete="given-name"
+                       disabled={isLoading}
+                       {...field}
+                       className="w-full border border-[#333333] rounded-md p-2"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
               <FormField
                 control={form.control}
                 name="email"

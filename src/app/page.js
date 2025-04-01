@@ -1,49 +1,24 @@
+"use client";
+import { useEffect, useState } from "react";
+import { getAnounces } from "@/src/services/anounceService";
 import Link from "next/link";
+import AnouncesList from "../components/anounces/anounceList";
 
 export default function Home() {
+  const [anounces, setAnounces] = useState([]); // État pour stocker les annonces
+  const [loading, setLoading] = useState(true); // État pour gérer le chargement
+  const [error, setError] = useState(null); // État pour gérer les erreurs
+
+ 
   return (
     <main>
       <section>
         <article>caroussel</article>
       </section>
 
-      <section className="bg-[#ffe47b] p-10 flex gap-5 justify-between">
-        <article className="bg-[#f9f6f1] rounded-md flex flex-col p-5 w-1/4 gap-3 h-auto justify-between">
-          <div className="flex justify-end">
-            <img src="./asset/coeuricon.png" alt="" id="like" className="w-4" />
-          </div>
-
-          <div className="flex justify-center">
-            <img src="" alt="" id="cover" className="h-72 rounded-md" />
-          </div>
-
-          <div className="flex flex-col">
-            <h3 id="auteur" className="text-sm font-extralight">
-              author
-            </h3>
-            <h2 id="titre" className="text-lg font-extrabold text-[#333333]">
-              product
-            </h2>
-            <p
-              id="price"
-              className="text-md font-bold text-primary-purple text-[#333333]"
-            >
-              Prix
-            </p>
-          </div>
-
-          <div className="flex justify-center text-sm">
-            <a
-              href=""
-              alt=""
-              className="text-[#f9f6f1] bg-[#333333] p-2 rounded-md"
-            >
-              Ajouter au panier
-            </a>
-          </div>
-        </article>
+      <section className="bg-[#ffe47b] p-10 flex gap-5 justify-between flex-wrap">
+       <AnouncesList/>
       </section>
-
       <section className="bg-[#f9f6f1] flex justify-around">
         <article className="text-[#9ba2ff] w-1/3 flex flex-col items-center justify-center p-10 gap-2">
           <img src="./asset/iconsearch.png" alt="" className="w-20" />
