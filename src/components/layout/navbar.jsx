@@ -58,7 +58,7 @@ export default function Navbar() {
 
             <form action="" method="get" className="flex w-6/12 justify-center">
                 <div>
-                    <input id="example" type="search" name="search" placeholder="Rechercher..." className=" bg-[#333333] rounded-md w-96 px-6" />
+                    <input id="example" type="search" name="search" placeholder="Rechercher..." className=" bg-[#333333] text-[#f9f6f1] rounded-md w-96 px-6" />
                 </div>
             </form>
 
@@ -76,13 +76,13 @@ export default function Navbar() {
         </nav>
         <nav className="p-2 flex justify-around bg-[#333333]">
 
-            <a href="/anounces" alt="" className="text-off-white hover:text-primary-purple">Tous les produits</a>
-            <a href="" alt="" className="text-off-white hover:text-primary-purple">Idées lecture</a>
-            <a href="" alt="" className="text-off-white hover:text-primary-purple">Notre selection</a>
-            <a href="" alt="" className="text-off-white hover:text-primary-purple">Promos</a>
-            <a href="" alt="" className="text-off-white hover:text-primary-purple">Meilleures ventes</a>
-            <a href="" alt="" className="text-off-white hover:text-primary-purple">Coup de coeur</a>
-            <a href="" alt="" className="text-off-white hover:text-primary-purple">Aide</a>
+            <a href="/anounces" alt="" className="text-[#f9f6f1] hover:text-primary-purple">Tous les produits</a>
+            <a href="" alt="" className="text-[#f9f6f1] hover:text-primary-purple">Idées lecture</a>
+            <a href="" alt="" className="text-[#f9f6f1] hover:text-primary-purple">Notre selection</a>
+            <a href="" alt="" className="text-[#f9f6f1] hover:text-primary-purple">Promos</a>
+            <a href="" alt="" className="text-[#f9f6f1] hover:text-primary-purple">Meilleures ventes</a>
+            <a href="" alt="" className="text-[#f9f6f1] hover:text-primary-purple">Coup de coeur</a>
+            <a href="" alt="" className="text-[#f9f6f1] hover:text-primary-purple">Aide</a>
 
         </nav>
     </header>

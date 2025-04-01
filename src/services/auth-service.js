@@ -3,11 +3,10 @@ import axios from "axios";
 // Il est préférable de ne pas hardcoder l'URL de l'API ici. Utilisez une variable d'environnement ou un fichier de configuration.
 const API_URL = "http://localhost:8000/api";
 
-// Configuration Axios
 const api = axios.create({
   baseURL: API_URL,
   headers: {
-    "Content-Type": "application/ld+json",
+    "Content-Type": "application/json", // Changé de application/ld+json
   },
 });
 
@@ -58,17 +57,24 @@ export const AuthService = {
   login: async (email, password) => {
     try {
       const response = await api.post("/login_check", {
-        username: email, // Souvent, l'API JWT attend "username" même si c'est un email
+        username: email,
         password,
       });
-
-      // Stocke le token JWT dans le localStorage
+  
       if (response.data.token) {
+        // Stocke le token
         localStorage.setItem("token", response.data.token);
+        
+        // Définit le cookie avec un domaine et un path explicites
+        document.cookie = `token=${response.data.token}; path=/; max-age=86400; secure`;
+        
+        // Configure l'intercepteur Axios
+        api.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
       }
-
+  
       return response.data;
     } catch (error) {
+      console.error("Login error:", error);
       throw error.response?.data || { message: "Erreur de connexion" };
     }
   },
@@ -78,6 +84,7 @@ export const AuthService = {
    */
   logout: () => {
     localStorage.removeItem("token");
+    document.cookie = "token=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT";
   },
 
   /**
@@ -94,16 +101,20 @@ export const AuthService = {
    */
   getCurrentUser: async () => {
     try {
-      const response = await api.get("/user/me");
+      const token = localStorage.getItem("token");
+      if (!token) {
+        throw new Error("No token found");
+      }
+  
+      const response = await api.get("/me"); // Assurez-vous que c'est le bon endpoint
       return response.data;
     } catch (error) {
-      throw (
-        error.response?.data || {
-          message: "Erreur d'obtention des données utilisateur",
-        }
-      );
+      console.error("getCurrentUser error:", error);
+      throw error.response?.data || {
+        message: "Erreur d'obtention des données utilisateur",
+      };
     }
   },
-};
+}
 
 export default AuthService;

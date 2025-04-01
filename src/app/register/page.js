@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -43,9 +43,14 @@ const registerSchema = z
 
   export default function RegisterPage() {
     const router = useRouter();
-    const { register } = useAuth();
+    const { register, isAuthenticated } = useAuth();
     const [isLoading, setIsLoading] = useState(false);
   
+    useEffect(() => {
+      if (isAuthenticated) {
+        router.push('/');
+      }
+    }, [isAuthenticated, router]);
     const form = useForm({
       resolver: zodResolver(registerSchema),
       defaultValues: {

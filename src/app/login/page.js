@@ -1,36 +1,32 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
-import * as z from "zod";
+import { useAuth } from "@/src/providers/auth-providers"; 
+import { useForm } from "react-hook-form"; // Remove Form from this import
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useAuth } from "@/src/context/auth-context";
-import { Button } from "@/src/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
+import * as z from "zod";
+import { 
+  Form,  // Import Form from shadcn/ui instead
+  FormControl, 
+  FormField, 
+  FormItem, 
+  FormLabel, 
+  FormMessage 
 } from "@/src/components/ui/form";
+import Link from "next/link";
+import { Button } from "@/src/components/ui/button";
 import { Input } from "@/src/components/ui/input";
 import { Checkbox } from "@/src/components/ui/checkbox";
 
-// Schéma de validation
 const loginSchema = z.object({
   email: z.string().email("Adresse email invalide"),
-  password: z
-    .string()
-    .min(6, "Le mot de passe doit contenir au moins 6 caractères"),
-  rememberMe: z.boolean().optional(),
+  password: z.string().min(6, "Le mot de passe doit contenir au moins 6 caractères"),
 });
 
 export default function LoginPage() {
   const router = useRouter();
-  const { login } = useAuth();
+  const { login, isAuthenticated } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
 
   const form = useForm({
@@ -38,7 +34,6 @@ export default function LoginPage() {
     defaultValues: {
       email: "",
       password: "",
-      rememberMe: false,
     },
   });
 
@@ -46,13 +41,22 @@ export default function LoginPage() {
     setIsLoading(true);
     try {
       const result = await login(data.email, data.password);
-      if (result.success) {
+      console.log("Login result:", result); // Add this for debugging
+      if (result?.success) {
         router.push("/");
       }
+    } catch (error) {
+      console.error("Login error:", error);
     } finally {
       setIsLoading(false);
     }
   };
+  useEffect(() => {
+    if (isAuthenticated) {
+      router.push("/");
+    }
+  }, [isAuthenticated, router]);
+
 
   return (
     <main className="flex flex-col items-center justify-center min-h-screen bg-[#ffe47b] p-10">
