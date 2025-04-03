@@ -55,7 +55,7 @@ export default function Navbar() {
               <Link href="/profilpage">
                 <img src="../asset/iconuser.png" alt="user" className="w-12" />
               </Link>
-              <Link href="#">
+              <Link href="card">
                 <img src="../asset/iconshop.png" alt="shop" className="w-12" />
               </Link>
             </>
@@ -64,7 +64,7 @@ export default function Navbar() {
               <img src="../asset/iconuser.png" alt="user" className="w-12" />
             </Link>
           )}
-          <Link href="#">
+          <Link href="/contact">
             <img src="../asset/iconcontact.png" alt="contact" className="w-12" />
           </Link>
 
@@ -95,8 +95,6 @@ export default function Navbar() {
         <Link href="/help" className="text-[#f9f6f1] hover:text-primary-purple">
           Aide
         </Link>
-        <a href="" alt="" className="text-[#f9f6f1] hover:text-primary-purple">Aide</a>
-
       </nav>
     </header>
   );

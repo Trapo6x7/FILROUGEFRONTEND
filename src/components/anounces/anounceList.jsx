@@ -4,6 +4,7 @@ import { getAnounces, getBookDetails } from '@/src/services/anounceService';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import { useCart } from '@/src/context/CartContext';
 
 const AnouncesList = () => {
     const searchParams = useSearchParams();
@@ -11,6 +12,7 @@ const AnouncesList = () => {
     const [anounces, setAnounces] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const { addToCart } = useCart();
 
     useEffect(() => {
         const fetchAnounces = async () => {
@@ -144,13 +146,25 @@ const AnouncesList = () => {
                         </div>
 
                         {/* Bouton */}
-                        <div className="flex justify-center">
+                        <div className="flex justify-center gap-2">
                             <Link
                                 href={`/anounces/${anounce.id}`}
                                 className="text-[#f9f6f1] bg-[#333333] p-2 rounded-md text-center w-full"
                             >
                                 Voir l'annonce
                             </Link>
+                            <button
+                                onClick={() =>
+                                    addToCart({
+                                        id: anounce.id,
+                                        name: anounce.bookDetails.title,
+                                        price: anounce.price,
+                                    })
+                                }
+                                className="text-[#f9f6f1] bg-[#9ba2ff] p-2 rounded-md text-center w-full"
+                            >
+                                Ajouter au panier
+                            </button>
                         </div>
                     </article>
                 ))}

@@ -3,6 +3,7 @@ import "./globals.css";
 import { Providers } from "./providers";
 import Navbar from "@/src/components/layout/navbar";
 import Footer from "@/src/components/layout/footer";
+import { CartProvider } from '@/src/context/CartContext';
 
 const inter = Inter({
   variable: "--font-inter",
@@ -27,9 +28,11 @@ export default function RootLayout({ children }) {
         className={`${inter.variable} ${manrope.variable} font-sans antialiased min-h-screen flex flex-col`}
       >
         <Providers>
-          <Navbar />
-          <div className="flex-1">{children}</div>
-          <Footer />
+          <CartProvider>
+            <Navbar />
+            <div className="flex-1">{children}</div>
+            <Footer />
+          </CartProvider>
         </Providers>
       </body>
     </html>
