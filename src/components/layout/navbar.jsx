@@ -51,9 +51,15 @@ export default function Navbar() {
 
         <div className="flex w-3/12 gap-1 right-0 justify-end">
           {isAuthenticated ? (
-            <Link href="/profilpage">
-              <img src="../asset/iconuser.png" alt="user" className="w-12" />
-            </Link>) : (
+            <>
+              <Link href="/profilpage">
+                <img src="../asset/iconuser.png" alt="user" className="w-12" />
+              </Link>
+              <Link href="#">
+                <img src="../asset/iconshop.png" alt="shop" className="w-12" />
+              </Link>
+            </>
+          ) : (
             <Link href="/login">
               <img src="../asset/iconuser.png" alt="user" className="w-12" />
             </Link>
@@ -61,19 +67,34 @@ export default function Navbar() {
           <Link href="#">
             <img src="../asset/iconcontact.png" alt="contact" className="w-12" />
           </Link>
-          <Link href="#">
-            <img src="../asset/iconshop.png" alt="shop" className="w-12" />
-          </Link>
+
         </div>
       </nav>
-      <nav className="p-2 flex justify-around bg-[#333333]">
-
-        <a href="/anounces" alt="" className="text-[#f9f6f1] hover:text-primary-purple">Tous les produits</a>
-        <a href="" alt="" className="text-[#f9f6f1] hover:text-primary-purple">Idées lecture</a>
-        <a href="" alt="" className="text-[#f9f6f1] hover:text-primary-purple">Notre selection</a>
-        <a href="" alt="" className="text-[#f9f6f1] hover:text-primary-purple">Promos</a>
-        <a href="" alt="" className="text-[#f9f6f1] hover:text-primary-purple">Meilleures ventes</a>
-        <a href="" alt="" className="text-[#f9f6f1] hover:text-primary-purple">Coup de coeur</a>
+      <nav className="px-16 py-2 flex justify-around bg-[#333333]">
+        <Link href="/anounces" className="text-[#f9f6f1] hover:text-primary-purple">
+          Tous les produits
+        </Link>
+        <Link
+          href="/anounces?filter=recent"
+          className="text-[#f9f6f1] hover:text-primary-purple"
+        >
+          Nouveautés
+        </Link>
+        <Link
+          href="/anounces?filter=selection"
+          className="text-[#f9f6f1] hover:text-primary-purple"
+        >
+          Notre selection
+        </Link>
+        <Link
+          href="/anounces?filter=bestSellers"
+          className="text-[#f9f6f1] hover:text-primary-purple"
+        >
+          Bon plans
+        </Link>
+        <Link href="/help" className="text-[#f9f6f1] hover:text-primary-purple">
+          Aide
+        </Link>
         <a href="" alt="" className="text-[#f9f6f1] hover:text-primary-purple">Aide</a>
 
       </nav>

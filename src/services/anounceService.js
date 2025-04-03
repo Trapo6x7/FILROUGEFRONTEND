@@ -2,19 +2,26 @@
 const BASE_URL = 'http://127.0.0.1:8000/api';
 const API_URL = 'http://127.0.0.1:8000/api/anounces';  // Remplace par l'URL de ton API Symfony
 
-export const getAnounces = async () => {
+export const getAnounces = async (filter = '') => {
     try {
-        const response = await fetch(API_URL);
-        if (!response.ok) {
-            throw new Error('Erreur lors de la récupération des livres');
-        }
-        const data = await response.json();
-        return data;
+      let url = API_URL;
+      
+      // Add query parameters based on filter
+      if (filter) {
+        url += `?filter=${filter}`;
+      }
+  
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      return data;
     } catch (error) {
-        console.error('Erreur:', error);
-        throw error;  // Propager l'erreur
+      console.error('Error:', error);
+      throw error;
     }
-};
+  };
 
 export const getBookDetails = async (bookUri) => {
     try {
@@ -33,6 +40,7 @@ export const getBookDetails = async (bookUri) => {
         throw error;
     }
 };
+
 export const getAuthorDetails = async (authorUri) => {
     try {
         const response = await fetch(`http://127.0.0.1:8000${authorUri}`);

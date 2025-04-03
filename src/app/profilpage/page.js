@@ -17,6 +17,7 @@ export default function Profil() {
     lastname: user?.lastname || '',
     password: '' // Ajout du champ password
   });
+// console.log(user);
 
   useEffect(() => {
     if (!isAuthenticated) {

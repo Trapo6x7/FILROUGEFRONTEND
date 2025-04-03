@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { use } from 'react';
 import { getAnounceDetails, getBookDetails } from '@/src/services/anounceService';
+import Link from 'next/link';
 
 export default function AnounceDetails({ params }) {
   const [anounce, setAnounce] = useState(null);
@@ -83,9 +84,9 @@ export default function AnounceDetails({ params }) {
               <h2 className="text-lg font-semibold mb-2">Vendeur</h2>
               <p className="text-gray-600">{anounce.seller.pseudo}</p>
             </div>
-            <button className="mt-6 bg-[#333333] text-white py-3 px-6 rounded-lg hover:bg-opacity-90 transition-colors">
-              Contacter le vendeur
-            </button>
+            <Link href="/anounces">
+              <p className="text-[#f9f6f1] bg-[#333333] p-2 rounded-md text-center w-full">Retour aux annonces</p>
+            </Link>
           </div>
         </div>
       </div>
