@@ -66,7 +66,7 @@ export default function Profil() {
       });
     }
   }, [user]);
-  
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -260,7 +260,7 @@ export default function Profil() {
               Password
             </label>
             <input
-              type="text"
+              type="password"
               name="password"
               value={formData.password}
               onChange={handleInputChange}

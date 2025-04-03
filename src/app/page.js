@@ -46,7 +46,7 @@ export default function Home() {
         </article>
       </section>
 
-      <section className="bg-[#ffe47b] p-10 flex gap-5 justify-between">
+      {/* <section className="bg-[#ffe47b] p-10 flex gap-5 justify-between">
         <article className="bg-[#f9f6f1] rounded-md flex flex-col justify-between p-5 w-1/3 gap-3 h-auto">
           <div className="flex justify-center">
             <img src="/" alt="" id="cover" className="h-auto rounded-md" />
@@ -67,7 +67,7 @@ export default function Home() {
             </a>
           </div>
         </article>
-      </section>
+      </section> */}
 
       <section className="bg-[#9ba2ff] relative flex flex-col ">
         <article className="py-16 px-28 gap-3">
