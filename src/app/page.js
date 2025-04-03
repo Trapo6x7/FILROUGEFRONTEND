@@ -11,95 +11,74 @@ export default function Home() {
 
   return (
     <main>
-      <section className="bg-[#ffe47b]   p-10 flex gap-5 justify-between flex-wrap">
+      <section className="bg-[#ffe47b] p-6 md:p-10 flex flex-col md:flex-row gap-5 justify-between flex-wrap">
         <AnouncesList />
       </section>
-      <section className="bg-[#f9f6f1]  flex justify-around">
-        <article className="text-[#9ba2ff] w-1/3 flex flex-col items-center justify-center p-10 gap-2">
-          <img src="./asset/iconsearch.png" alt="" className="w-20" />
-          <h2 className="font-bold text-md">
+      <section className="bg-[#f9f6f1] p-6 md:p-10 flex flex-col md:flex-row justify-around gap-6">
+        <article className="text-[#9ba2ff] w-full md:w-1/3 flex flex-col items-center justify-center p-5 gap-2">
+          <img src="./asset/iconsearch.png" alt="" className="w-16 md:w-20" />
+          <h2 className="font-bold text-sm md:text-md text-center">
             Facilité d'accès et de recherche
           </h2>
-          <p className="font-light text-sm text-center">
+          <p className="font-light text-xs md:text-sm text-center">
             Les applications spécialisées permettent de rechercher rapidement
             des livres en fonction de critères précis.
           </p>
         </article>
-        <article className="text-[#9ba2ff] w-1/3 flex flex-col items-center justify-center p-5 gap-2">
-          <img src="./asset/iconcomuno.png" alt="" className="w-20" />
-          <h2 className="font-bold text-md">
+        <article className="text-[#9ba2ff] w-full md:w-1/3 flex flex-col items-center justify-center p-5 gap-2">
+          <img src="./asset/iconcomuno.png" alt="" className="w-16 md:w-20" />
+          <h2 className="font-bold text-sm md:text-md text-center">
             Transaction simplifiée et sécurisée
           </h2>
-          <p className="font-light text-sm text-center">
+          <p className="font-light text-xs md:text-sm text-center">
             Vous avez accès à une vaste communauté d'acheteurs et de vendeurs,
             ce qui augmente les chances de trouver des livres rares ou
             spécifiques.
           </p>
         </article>
-        <article className="text-[#9ba2ff] w-1/3 flex flex-col items-center justify-center p-5 gap-2">
-          <img src="./asset/iconhalass.png" alt="" className="w-20" />
-          <h2 className="font-bold text-md">Large communauté et choix varié</h2>
-          <p className="font-light text-sm text-center">
+        <article className="text-[#9ba2ff] w-full md:w-1/3 flex flex-col items-center justify-center p-5 gap-2">
+          <img src="./asset/iconhalass.png" alt="" className="w-16 md:w-20" />
+          <h2 className="font-bold text-sm md:text-md text-center">
+            Large communauté et choix varié
+          </h2>
+          <p className="font-light text-xs md:text-sm text-center">
             Les plateformes offrent des systèmes de paiement sécurisés et des
             fonctionnalités de messagerie intégrées.
           </p>
         </article>
       </section>
 
-      {/* <section className="bg-[#ffe47b] p-10 flex gap-5 justify-between">
-        <article className="bg-[#f9f6f1] rounded-md flex flex-col justify-between p-5 w-1/3 gap-3 h-auto">
-          <div className="flex justify-center">
-            <img src="/" alt="" id="cover" className="h-auto rounded-md" />
-          </div>
-
-          <div className="flex flex-col">
-            <h3 className="text-md font-bold">Name</h3>
-            <p className="text-sm">Body</p>
-          </div>
-
-          <div className="flex justify-end items-end text-sm">
-            <a
-              href=""
-              alt=""
-              className="text-[#f9f6f1] bg-[#333333] p-2 w-1/2 text-center rounded-md"
-            >
-              Lire l'article
-            </a>
-          </div>
-        </article>
-      </section> */}
-
-      <section className="bg-[#9ba2ff] relative flex flex-col ">
-        <article className="py-16 px-28 gap-3">
-          <p className="text-8xl font-bold text-[#f9f6f1] text-end justify-end items-end">
+      <section className="bg-[#9ba2ff] relative flex flex-col p-6 md:p-10">
+        <article className="py-10 md:py-16 px-6 md:px-28 gap-3">
+          <p className="text-4xl md:text-8xl font-bold text-[#f9f6f1] text-end">
             Offrez une nouvelle vie à vos livres
           </p>
-          <p className="text-3xl text-end text-[#f9f6f1]">
+          <p className="text-lg md:text-3xl text-end text-[#f9f6f1]">
             Estimez vos livres avec notre application.
           </p>
-          <div className="flex justify-end mt-8 gap-8  py-16">
+          <div className="flex justify-end mt-8 gap-4 md:gap-8 py-10 md:py-16">
             <img
               src="./asset/logoapp/logogooglestore.png"
               alt="googleplay"
-              className="w-1/8 h-auto"
+              className="w-1/4 md:w-1/8 h-auto"
             />
             <img
               src="./asset/logoapp/logoapplestore.png"
               alt="appstore"
-              className="w-1/8 h-auto"
+              className="w-1/4 md:w-1/8 h-auto"
             />
           </div>
         </article>
         <img
           src="./asset/photos/mockupappli.png"
           alt="screenshot"
-          className="placement absolute h-[75%] mt-16"
+          className="placement absolute h-[50%] md:h-[75%] mt-10 md:mt-16"
         />
       </section>
 
       <section>
-        <article className="bg-[#f9f6f1] text-[#333333] p-10 flex flex-col gap-3 text-sm">
-          <h2 className="font-bold">
+        <article className="bg-[#f9f6f1] text-[#333333] p-6 md:p-10 flex flex-col gap-3 text-sm md:text-base">
+          <h2 className="font-bold text-lg md:text-xl">
             Pourquoi acheter des livres d'occasion ?
           </h2>
 
@@ -115,7 +94,7 @@ export default function Home() {
             norme !
           </p>
 
-          <h2 className="font-bold">
+          <h2 className="font-bold text-lg md:text-xl">
             Pourquoi acheter des livres sur BookMarket ?
           </h2>
 
@@ -130,7 +109,7 @@ export default function Home() {
             notre maximum pour proposer les meilleurs prix.
           </p>
 
-          <h2 className="font-bold">Qui sommes-nous ?</h2>
+          <h2 className="font-bold text-lg md:text-xl">Qui sommes-nous ?</h2>
 
           <p>
             BookMarket est la plateforme pour vendre et acheter des livres
@@ -141,7 +120,9 @@ export default function Home() {
             vision claire et ambitieuse : faire de l'occasion une norme.
           </p>
 
-          <h2 className="font-bold">Comment vendre ses livres ?</h2>
+          <h2 className="font-bold text-lg md:text-xl">
+            Comment vendre ses livres ?
+          </h2>
 
           <p>
             La Bourse aux Livres n'est pas simplement une boutique en ligne,

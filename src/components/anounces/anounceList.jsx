@@ -4,7 +4,6 @@ import { getAnounces, getBookDetails } from '@/src/services/anounceService';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { useCart } from '@/src/context/CartContext';
 
 const AnouncesList = () => {
     const searchParams = useSearchParams();
@@ -12,7 +11,6 @@ const AnouncesList = () => {
     const [anounces, setAnounces] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const { addToCart } = useCart();
 
     useEffect(() => {
         const fetchAnounces = async () => {
@@ -114,11 +112,11 @@ const AnouncesList = () => {
     return (
         <>
             <h1 className="text-2xl font-bold text-center mb-8">{getTitle()}</h1>
-            <section className="flex flex-wrap gap-6 justify-center">
+            <section className="flex flex-wrap gap-6 justify-center px-4">
                 {anounces.map((anounce) => (
                     <article
                         key={anounce.id}
-                        className="bg-[#ffe47b] rounded-md flex flex-col justify-between p-5 gap-3 w-[22%]" // 22% pour 4 annonces par ligne avec un gap
+                        className="bg-[#ffe47b] rounded-md flex flex-col justify-between p-5 gap-3 w-full md:w-[45%] lg:w-[22%]"
                     >
                         {/* Image */}
                         <div className="flex justify-center">
@@ -146,25 +144,13 @@ const AnouncesList = () => {
                         </div>
 
                         {/* Bouton */}
-                        <div className="flex justify-center gap-2">
+                        <div className="flex justify-center">
                             <Link
                                 href={`/anounces/${anounce.id}`}
                                 className="text-[#f9f6f1] bg-[#333333] p-2 rounded-md text-center w-full"
                             >
                                 Voir l'annonce
                             </Link>
-                            <button
-                                onClick={() =>
-                                    addToCart({
-                                        id: anounce.id,
-                                        name: anounce.bookDetails.title,
-                                        price: anounce.price,
-                                    })
-                                }
-                                className="text-[#f9f6f1] bg-[#9ba2ff] p-2 rounded-md text-center w-full"
-                            >
-                                Ajouter au panier
-                            </button>
                         </div>
                     </article>
                 ))}
