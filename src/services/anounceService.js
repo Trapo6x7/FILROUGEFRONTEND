@@ -23,7 +23,7 @@ export const getBookDetails = async (bookUri) => {
             throw new Error('Erreur lors de la récupération des détails du livre');
         }
         const data = await response.json();
-        console.log(data);
+        // console.log(data);
         return data;
     } catch (error) {
         console.error('Erreur:', error);
@@ -38,7 +38,7 @@ export const getAuthorDetails = async (authorUri) => {
             throw new Error(`Erreur lors de la récupération des détails de l'auteur : ${response.statusText}`);
         }
         const data = await response.json();
-        console.log(data);
+        // console.log(data);
         
         return data;
     } catch (error) {

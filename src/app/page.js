@@ -54,7 +54,7 @@ export default function Home() {
       <section className="bg-[#ffe47b] p-10 flex gap-5 justify-between">
         <article className="bg-[#f9f6f1] rounded-md flex flex-col justify-between p-5 w-1/3 gap-3 h-auto">
           <div className="flex justify-center">
-            <img src="/" alt="" id="cover" classNameName="h-auto rounded-md" />
+            <img src="/" alt="" id="cover" className="h-auto rounded-md" />
           </div>
 
           <div className="flex flex-col">

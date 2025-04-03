@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useAuth } from "@/src/providers/auth-providers"; 
+import { useAuth } from "@/src/context/auth-context";
 import { useForm } from "react-hook-form"; // Remove Form from this import
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";

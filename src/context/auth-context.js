@@ -15,18 +15,20 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const initAuth = async () => {
       try {
-        if (AuthService.isAuthenticated()) {
+        const token = localStorage.getItem("token");
+        if (token) {
           const userData = await AuthService.getCurrentUser();
           setUser(userData);
         }
       } catch (error) {
-        console.error("Erreur lors de l'initialisation de l'authentification", error);
+        console.error("Erreur d'authentification:", error);
         AuthService.logout();
+        setUser(null);
       } finally {
         setLoading(false);
       }
     };
-
+  
     initAuth();
   }, []);
   
@@ -35,15 +37,10 @@ export const AuthProvider = ({ children }) => {
       setLoading(true);
       const response = await AuthService.login(email, password);
       setUser(response.user || { email });
-      toast.success("Connexion réussie", {
-        description: "Vous êtes maintenant connecté."
-      });
+      toast.success("Connexion réussie");
       return { success: true };
     } catch (error) {
-      console.error("Erreur de connexion", error);
-      toast.error("Échec de la connexion", {
-        description: error.message || "Identifiants incorrects"
-      });
+      toast.error("Échec de la connexion");
       return { success: false, error };
     } finally {
       setLoading(false);
@@ -72,10 +69,8 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     AuthService.logout();
     setUser(null);
-    toast.success("Déconnexion", {
-      description: "Vous avez été déconnecté avec succès."
-    });
-    router.push("/");
+    router.push("/login");
+    toast.success("Déconnexion réussie");
   };
 
 
@@ -84,10 +79,10 @@ export const AuthProvider = ({ children }) => {
       value={{
         user,
         loading,
-        login,
-        register,
-        logout,
         isAuthenticated: !!user,
+        // register,
+        login,
+        logout,
       }}
     >
       {children}

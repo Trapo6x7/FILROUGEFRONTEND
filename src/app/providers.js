@@ -3,21 +3,33 @@
 import { ThemeProvider } from "next-themes";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useState, useEffect } from "react";
-import { AuthProvider } from "@/src/providers/auth-providers";
+
 import { Toaster } from "sonner";
 import { usePathname, useRouter } from "next/navigation";
+import { AuthProvider, useAuth } from "@/src/context/auth-context";
 
 function AuthRedirect({ children }) {
   const pathname = usePathname();
   const router = useRouter();
+  const { isAuthenticated } = useAuth();
+
   const isAuthPage = pathname === '/login' || pathname === '/register';
+  
+  const isProtectedPage = pathname === '/profilpage';
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token && isAuthPage) {
+    // Si l'utilisateur est connecté et essaie d'accéder aux pages d'auth
+    if (isAuthenticated && isAuthPage) {
       router.push('/');
+      return;
     }
-  }, [pathname, router, isAuthPage]);
+
+    // Si l'utilisateur n'est pas connecté et essaie d'accéder aux pages protégées
+    if (!isAuthenticated && isProtectedPage) {
+      router.push('/login');
+      return;
+    }
+  }, [pathname, router, isAuthenticated, isAuthPage, isProtectedPage]);
 
   return children;
 }

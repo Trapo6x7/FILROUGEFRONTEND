@@ -18,10 +18,10 @@ const AnouncesList = () => {
                         let bookDetails = null;
         
                         if (anounce.book && typeof anounce.book === "object" && anounce.book["@id"]) {
-                            console.log("Book URI:", anounce.book["@id"]); // Log pour vérifier l'URI du livre
+                            // console.log("Book URI:", anounce.book["@id"]); // Log pour vérifier l'URI du livre
                             bookDetails = await getBookDetails(anounce.book["@id"]); // Récupérer les détails du livre
                         } else if (typeof anounce.book === "string") {
-                            console.log("Book URI:", anounce.book); // Log pour vérifier l'URI du livre
+                            // console.log("Book URI:", anounce.book); // Log pour vérifier l'URI du livre
                             bookDetails = await getBookDetails(anounce.book); // Récupérer les détails du livre
                         }
         
@@ -32,7 +32,7 @@ const AnouncesList = () => {
                     })
                 );
         
-                console.log("Anounces with details:", anouncesWithDetails);
+                // console.log("Anounces with details:", anouncesWithDetails);
                 setAnounces(anouncesWithDetails);
             } catch (err) {
                 console.error("Erreur lors de la récupération des annonces :", err);
