@@ -9,15 +9,10 @@ export default function Home() {
   const [loading, setLoading] = useState(true); // État pour gérer le chargement
   const [error, setError] = useState(null); // État pour gérer les erreurs
 
- 
   return (
     <main>
-      <section>
-        <article>caroussel</article>
-      </section>
-
       <section className="bg-[#ffe47b]   p-10 flex gap-5 justify-between flex-wrap">
-       <AnouncesList/>
+        <AnouncesList />
       </section>
       <section className="bg-[#f9f6f1]  flex justify-around">
         <article className="text-[#9ba2ff] w-1/3 flex flex-col items-center justify-center p-10 gap-2">

@@ -59,7 +59,7 @@ export default function LoginPage() {
 
 
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen bg-[#ffe47b] p-10">
+    <main className="flex flex-col items-center justify-center min-h-screen text-[#333333] bg-[#ffe47b] p-10">
       <div className="flex flex-col items-center justify-center w-full max-w-md bg-[#f9f6f1] p-8 rounded-md shadow-md gap-6">
         <div className="text-center">
           <h1 className="text-3xl font-bold text-[#333333]">Connexion</h1>

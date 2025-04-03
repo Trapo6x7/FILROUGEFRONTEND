@@ -3,7 +3,7 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import AuthService from "@/src/services/auth-service";
 import { useRouter } from "next/navigation";
-import { toast } from "sonner"; // Changed this import
+import { toast } from "sonner";
 
 const AuthContext = createContext({});
 
@@ -73,6 +73,11 @@ export const AuthProvider = ({ children }) => {
     toast.success("Déconnexion réussie");
   };
 
+  const updateUser = (userData) => {
+    setUser(userData);
+    localStorage.setItem('user', JSON.stringify(userData));
+  };
+
 
   return (
     <AuthContext.Provider
@@ -80,9 +85,10 @@ export const AuthProvider = ({ children }) => {
         user,
         loading,
         isAuthenticated: !!user,
-        // register,
         login,
         logout,
+        updateUser,
+        register,
       }}
     >
       {children}

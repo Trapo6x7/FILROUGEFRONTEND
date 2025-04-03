@@ -6,7 +6,7 @@ const API_URL = "http://localhost:8000/api";
 const api = axios.create({
   baseURL: API_URL,
   headers: {
-    "Content-Type": "application/json", // Changé de application/ld+json
+    "Content-Type": "application/ld+json", // Changé de application/ld+json
   },
 });
 
@@ -124,6 +124,36 @@ const AuthService = {
     } catch (error) {
       AuthService.logout(); // En cas d'erreur, déconnecter l'utilisateur
       throw error;
+    }
+  },
+
+  /**
+   * Met à jour le profil de l'utilisateur
+   * @param {Object} userData - données de l'utilisateur à mettre à jour
+   * @returns {Promise} - promesse résolue avec les données de l'utilisateur mises à jour
+   */
+  updateProfile: async (userData) => {
+    try {
+      const currentUser = await AuthService.getCurrentUser();
+
+      const response = await api.patch(`/users/${currentUser.id}`, userData, {
+        headers: {
+          "Content-Type": "application/merge-patch+json", // Modifier ce header
+          Accept: "application/ld+json",
+        },
+      });
+
+      // Mettre à jour les données utilisateur dans le localStorage
+      localStorage.setItem("user", JSON.stringify(response.data));
+
+      return response.data;
+    } catch (error) {
+      console.error("Erreur lors de la mise à jour du profil:", error);
+      throw (
+        error.response?.data || {
+          message: "Erreur lors de la mise à jour du profil",
+        }
+      );
     }
   },
 };
