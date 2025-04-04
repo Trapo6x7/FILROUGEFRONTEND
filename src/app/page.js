@@ -8,10 +8,27 @@ export default function Home() {
   const [anounces, setAnounces] = useState([]); // État pour stocker les annonces
   const [loading, setLoading] = useState(true); // État pour gérer le chargement
   const [error, setError] = useState(null); // État pour gérer les erreurs
-
+  const [isDesktop, setIsDesktop] = useState(false);
+  
+    useEffect(() => {
+      const mediaQuery = window.matchMedia("(min-width: 2500px)");
+  
+      const handleResize = () => {
+        setIsDesktop(mediaQuery.matches);
+      };
+  
+      handleResize(); // Appel initial
+  
+      mediaQuery.addEventListener("change", handleResize);
+  
+      return () => {
+        mediaQuery.removeEventListener("change", handleResize);
+      };
+    }, []);
+    
   return (
     <main>
-      <section className="bg-[#ffe47b] p-6 md:p-10 flex flex-col md:flex-row gap-5 justify-between flex-wrap">
+      <section className="bg-[#ffe47b] p-6 md:p-10 flex flex-col items-center sm:justify-center md:flex-row gap-5 justify-between flex-wrap">
         <AnouncesList />
       </section>
       <section className="bg-[#f9f6f1] p-6 md:p-10 flex flex-col md:flex-row justify-around gap-6">
@@ -47,34 +64,38 @@ export default function Home() {
           </p>
         </article>
       </section>
-
+      
       <section className="bg-[#9ba2ff] relative flex flex-col p-6 md:p-10">
-        <article className="py-10 md:py-16 px-6 md:px-28 gap-3">
-          <p className="text-4xl md:text-8xl font-bold text-[#f9f6f1] text-end">
-            Offrez une nouvelle vie à vos livres
-          </p>
-          <p className="text-lg md:text-3xl text-end text-[#f9f6f1]">
-            Estimez vos livres avec notre application.
-          </p>
-          <div className="flex justify-end mt-8 gap-4 md:gap-8 py-10 md:py-16">
-            <img
-              src="./asset/logoapp/logogooglestore.png"
-              alt="googleplay"
-              className="w-1/4 md:w-1/8 h-auto"
-            />
-            <img
-              src="./asset/logoapp/logoapplestore.png"
-              alt="appstore"
-              className="w-1/4 md:w-1/8 h-auto"
-            />
-          </div>
-        </article>
+      <article className="py-10 md:py-16 px-6 md:px-28 gap-3 text-center md:text-end">
+        <p className="text-4xl md:text-8xl font-bold text-[#f9f6f1]">
+          Offrez une nouvelle vie à vos livres
+        </p>
+        <p className="text-lg md:text-3xl text-[#f9f6f1]">
+          Estimez vos livres avec notre application.
+        </p>
+
+        <div className="flex justify-center md:justify-end mt-8 gap-4 md:gap-8 py-10 md:py-16">
+          <img
+            src="./asset/logoapp/logogooglestore.png"
+            alt="googleplay"
+            className="w-1/3 md:w-1/6 h-auto"
+          />
+          <img
+            src="./asset/logoapp/logoapplestore.png"
+            alt="appstore"
+            className="w-1/3 md:w-1/6 h-auto"
+          />
+        </div>
+      </article>
+
+      {isDesktop && (
         <img
           src="./asset/photos/mockupappli.png"
           alt="screenshot"
-          className="placement absolute h-[50%] md:h-[75%] mt-10 md:mt-16"
+          className="absolute placement h-[90%]"
         />
-      </section>
+      )}
+    </section>
 
       <section>
         <article className="bg-[#f9f6f1] text-[#333333] p-6 md:p-10 flex flex-col gap-3 text-sm md:text-base">

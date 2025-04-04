@@ -2,57 +2,41 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-<footer className="bg-[#333333] text-[#f9f6f1] p-10  flex justify-between">
+    <footer className="bg-[#333333] text-[#f9f6f1] px-6 py-10 flex flex-col md:flex-row justify-between items-center md:items-start gap-10">
 
-<div className="flex flex-col gap-24">
-    <div className="text-lg">
-        <h2>BookMarket</h2>
-    </div>
-    <div className="flex gap-2 text-xs">
-        <a href="" alt="">
-            <p>Tous les produits</p>
-        </a>
-        <p>/</p>
-        <a href="" alt="">
-            <p>Idées lecture</p>
-        </a>
-        <p>/</p>
-        <a href="" alt="">
-            <p>Notre sélection</p>
-        </a>
-        <p>/</p>
+      {/* Bloc gauche */}
+      <div className="flex flex-col items-center md:items-start gap-6 w-full md:w-1/2">
+        <h2 className="text-xl font-semibold">BookMarket</h2>
 
-        <a href="" alt="">
-            <p>Promo</p>
-        </a>
-        <p>/</p>
-        <a href="" alt="">
-            <p>Meilleures ventes</p>
-        </a>
-        <p>/</p>
-        <a href="" alt="">
-            <p>Coup de coeur</p>
-        </a>
-        <p>/</p>
-        <a href="" alt="">
-            <p>Aide</p>
-        </a>
-    </div>
-</div>
+        <div className="flex flex-wrap justify-center md:justify-start gap-2 text-xs text-center">
+          <Link href="/anounces"><p className="hover:underline">Tous les produits</p></Link>
+          <span>/</span>
+          <Link href="/anounces?filter=lecture"><p className="hover:underline">Idées lecture</p></Link>
+          <span>/</span>
+          <Link href="/anounces?filter=selection"><p className="hover:underline">Notre sélection</p></Link>
+          <span>/</span>
+          <Link href="/anounces?filter=promo"><p className="hover:underline">Promo</p></Link>
+          <span>/</span>
+          <Link href="/anounces?filter=bestSellers"><p className="hover:underline">Meilleures ventes</p></Link>
+          <span>/</span>
+          <Link href="/anounces?filter=favorites"><p className="hover:underline">Coup de cœur</p></Link>
+          <span>/</span>
+          <Link href="/help"><p className="hover:underline">Aide</p></Link>
+        </div>
+      </div>
 
-<div className="flex flex-col justify-end items-end gap-5">
-    <div className="text-end">
-        <p className="text-xs">Contact us</p>
-        <p className="text-md">+1 999 888-76-54</p>
-    </div>
+      {/* Bloc droit */}
+      <div className="flex flex-col text-center md:text-end gap-4 w-full md:w-1/2">
+        <div>
+          <p className="text-xs uppercase">Contact</p>
+          <p className="text-base">+1 999 888-76-54</p>
+        </div>
 
-    <div className="text-end">
-        <p className="text-xs">Email</p>
-        <p className="text-md">hello@bookmarket.com</p>
-    </div>
-</div>
-
-
-</footer>
+        <div>
+          <p className="text-xs uppercase">Email</p>
+          <p className="text-base">hello@bookmarket.com</p>
+        </div>
+      </div>
+    </footer>
   );
 }
