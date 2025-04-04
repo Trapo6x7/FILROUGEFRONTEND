@@ -14,7 +14,7 @@ const CartPage = () => {
 
   return (
     <div className="bg-[#ffe47b] min-h-screen p-10">
-      <h1 className="text-4xl font-bold mb-6 text-[#333333]">Votre Panier</h1>
+      <h1 className="text-4xl font-bold mb-6 text-center text-[#333333]">Votre Panier</h1>
       {cartItems.length > 0 ? (
         <div className="flex flex-col gap-6">
           <div className="flex flex-col sm:flex-row gap-6">
