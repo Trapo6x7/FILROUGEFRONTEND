@@ -10,7 +10,9 @@ export const CartProvider = ({ children }) => {
     const addToCart = (item) => {
         setCartItems((prevItems) => {
             const existingItem = prevItems.find((cartItem) => cartItem.id === item.id);
+            
             if (existingItem) {
+    
                 return prevItems.map((cartItem) =>
                     cartItem.id === item.id
                         ? { ...cartItem, quantity: cartItem.quantity + 1 }

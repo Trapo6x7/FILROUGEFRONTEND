@@ -50,7 +50,7 @@ export default function Navbar() {
               <Link href="/profilpage">
                 <img src="../asset/iconuser.png" alt="user" className="w-10" />
               </Link>
-              <Link href="/card">
+              <Link href="/cart">
                 <img src="../asset/iconshop.png" alt="shop" className="w-10" />
               </Link>
             </>

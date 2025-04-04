@@ -4,6 +4,7 @@ import { getAnounces, getBookDetails } from '@/src/services/anounceService';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import { useCart } from '@/src/context/CartContext'; // Import du contexte
 
 const AnouncesList = () => {
   const searchParams = useSearchParams();
@@ -11,6 +12,7 @@ const AnouncesList = () => {
   const [anounces, setAnounces] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { addToCart } = useCart(); // Récupération de la fonction addToCart depuis le contexte
 
   useEffect(() => {
     const fetchAnounces = async () => {
@@ -130,14 +132,20 @@ const AnouncesList = () => {
               </p>
             </div>
 
-            {/* Bouton */}
-            <div className="flex justify-center mt-3">
+            {/* Boutons */}
+            <div className="flex flex-col justify-center mt-3 gap-2">
               <Link
                 href={`/anounces/${anounce.id}`}
                 className="text-[#f9f6f1] bg-[#333333] p-2 rounded-md text-center w-full hover:bg-[#222222] transition"
               >
                 Voir l'annonce
               </Link>
+              <button
+                onClick={() => addToCart(anounce)}
+                className="bg-[#333333] text-[#f9f6f1] p-2 rounded-md text-center w-full hover:bg-[#222222] transition"
+              >
+                Ajouter au panier
+              </button>
             </div>
           </article>
         ))}
