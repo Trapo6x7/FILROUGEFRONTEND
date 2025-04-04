@@ -11,7 +11,7 @@ export default function Home() {
   const [isDesktop, setIsDesktop] = useState(false);
   
     useEffect(() => {
-      const mediaQuery = window.matchMedia("(min-width: 2500px)");
+      const mediaQuery = window.matchMedia("(min-width: 1500px)");
   
       const handleResize = () => {
         setIsDesktop(mediaQuery.matches);
@@ -92,7 +92,7 @@ export default function Home() {
         <img
           src="./asset/photos/mockupappli.png"
           alt="screenshot"
-          className="absolute placement h-[90%]"
+          className="absolute placement h-[80%]"
         />
       )}
     </section>
