@@ -1,28 +1,4 @@
-import axios from "axios";
-
-// Il est préférable de ne pas hardcoder l'URL de l'API ici. Utilisez une variable d'environnement ou un fichier de configuration.
-const API_URL = "http://localhost:8000/api";
-
-const api = axios.create({
-  baseURL: API_URL,
-  headers: {
-    "Content-Type": "application/ld+json", // Changé de application/ld+json
-  },
-});
-
-// Intercepteur pour ajouter le token JWT à chaque requête
-api.interceptors.request.use(
-  (config) => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      config.headers["Authorization"] = `Bearer ${token}`;
-    }
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
-  }
-);
+import api from '../utils/api'; // Assure-toi que le chemin vers ton utilitaire API est correct
 
 const AuthService = {
   /**
@@ -37,10 +13,10 @@ const AuthService = {
         password: userData.password,
         firstname: userData.firstName,
         lastname: userData.lastName,
-        username: userData.username, // Add this line
+        username: userData.username,
       };
 
-      const response = await api.post("/register", transformedData);
+      const response = await api.post("/api/register", transformedData);
       return response.data;
     } catch (error) {
       console.error("Détails de l'erreur:", error.response?.data);
@@ -56,20 +32,16 @@ const AuthService = {
    */
   login: async (email, password) => {
     try {
-      const response = await api.post("/login_check", {
+      const response = await api.post("/api/login_check", {
         username: email,
         password,
       });
 
       if (response.data.token) {
-        // Stocke le token
         localStorage.setItem("token", response.data.token);
-        // Configure l'intercepteur Axios
-        api.defaults.headers.common[
-          "Authorization"
-        ] = `Bearer ${response.data.token}`;
+        api.defaults.headers.common["Authorization"] = `Bearer ${response.data.token}`;
 
-        const userResponse = await api.get("/me");
+        const userResponse = await api.get("/api/me");
         localStorage.setItem("user", JSON.stringify(userResponse.data));
 
         return {
@@ -113,16 +85,15 @@ const AuthService = {
         throw new Error("No token found");
       }
 
-      // Utiliser d'abord les données stockées localement
       if (storedUser) {
         return JSON.parse(storedUser);
       }
 
-      const response = await api.get("/me");
-      localStorage.setItem("user", JSON.stringify(response.data)); // Assurez-vous que c'est le bon endpoint
+      const response = await api.get("/api/me");
+      localStorage.setItem("user", JSON.stringify(response.data));
       return response.data;
     } catch (error) {
-      AuthService.logout(); // En cas d'erreur, déconnecter l'utilisateur
+      AuthService.logout();
       throw error;
     }
   },
@@ -136,24 +107,19 @@ const AuthService = {
     try {
       const currentUser = await AuthService.getCurrentUser();
 
-      const response = await api.patch(`/users/${currentUser.id}`, userData, {
+      const response = await api.patch(`/api/users/${currentUser.id}`, userData, {
         headers: {
-          "Content-Type": "application/merge-patch+json", // Modifier ce header
+          "Content-Type": "application/merge-patch+json",
           Accept: "application/ld+json",
         },
       });
 
-      // Mettre à jour les données utilisateur dans le localStorage
       localStorage.setItem("user", JSON.stringify(response.data));
 
       return response.data;
     } catch (error) {
       console.error("Erreur lors de la mise à jour du profil:", error);
-      throw (
-        error.response?.data || {
-          message: "Erreur lors de la mise à jour du profil",
-        }
-      );
+      throw error.response?.data || { message: "Erreur lors de la mise à jour du profil" };
     }
   },
 };

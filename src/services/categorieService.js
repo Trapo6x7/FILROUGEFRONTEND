@@ -1,17 +1,10 @@
-
-
-const API_URL = 'http://127.0.0.1:8000/api/categories';  // Remplace par l'URL de ton API Symfony
+// services/categoryService.js
+import api from '../utils/api';  // Assure-toi que le chemin vers ton utilitaire est correct
 
 export const getCategories = async () => {
     try {
-        const response = await fetch(API_URL);
-        if (!response.ok) {
-            throw new Error('Erreur lors de la récupération des livres');
-        }
-        const data = await response.json();
- 
-        
-        return data;
+        const response = await api.get('/api/categories');  // Utilise l'endpoint relatif
+        return response.data;  // Axios gère automatiquement la conversion en JSON
     } catch (error) {
         console.error('Erreur:', error);
         throw error;  // Propager l'erreur
