@@ -58,8 +58,8 @@ export default function AnounceDetails({ params }) {
         <div className="grid grid-cols-2 gap-8">
           {/* Colonne de gauche - Image */}
           <div className="flex justify-center items-start">
-            <Image
-              src="/asset/image/placeholderbook.png"
+            <img
+              src="public/asset/image/placeholderbook.png"
               alt={anounce.bookDetails.title}
               className="rounded-lg shadow-md max-h-[400px]"
             />
