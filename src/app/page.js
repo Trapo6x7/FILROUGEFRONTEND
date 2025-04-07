@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { getAnounces } from "@/src/services/anounceService";
 import Link from "next/link";
 import AnouncesList from "../components/anounces/anounceList";
@@ -29,7 +29,9 @@ export default function Home() {
   return (
     <main>
       <section className="bg-[#ffe47b] p-6 md:p-10 flex flex-col items-center sm:justify-center md:flex-row gap-5 justify-between flex-wrap">
-        <AnouncesList />
+      <Suspense fallback={<div>Chargement des annonces...</div>}>
+          <AnouncesList />
+        </Suspense>
       </section>
       <section className="bg-[#f9f6f1] p-6 md:p-10 flex flex-col md:flex-row justify-around gap-6">
         <article className="text-[#9ba2ff] w-full md:w-1/3 flex flex-col items-center justify-center p-5 gap-2">

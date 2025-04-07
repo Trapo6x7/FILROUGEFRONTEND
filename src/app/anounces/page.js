@@ -1,7 +1,8 @@
 export const dynamic = 'force-dynamic'; // très important pour désactiver le rendu statique
 
-import { Suspense } from 'react';
+
 import AnouncesList from '@/src/components/anounces/anounceList';
+import { Suspense } from 'react';
 
 export default function AnouncesPage() {
   return (
