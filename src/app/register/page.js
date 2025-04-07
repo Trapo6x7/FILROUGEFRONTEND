@@ -33,7 +33,7 @@ const registerSchema = z
     .min(6, "Le mot de passe doit contenir au moins 6 caractères"),
   confirmPassword: z.string(),
   acceptTerms: z.boolean().refine((val) => val === true, {
-    message: "Vous devez accepter les conditions d'utilisation",
+    message: "Vous devez accepter les conditions d&apos;utilisation",
   }),
 })
 .refine((data) => data.password === data.confirmPassword, {
@@ -266,7 +266,7 @@ const registerSchema = z
                 className="w-full bg-[#333333] text-[#f9f6f1] hover:bg-[#444444] p-2 rounded-md"
                 disabled={isLoading}
               >
-                {isLoading ? "Inscription en cours..." : "S'inscrire"}
+                {isLoading ? "Inscription en cours..." : "S&apos;inscrire"}
               </Button>
             </form>
           </Form>

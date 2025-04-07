@@ -5,6 +5,8 @@ import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useCart } from '@/src/context/CartContext'; // Import du contexte
+import PlaceHolderImage from "@/asset/image/placeholderbook.png";
+
 
 const AnouncesList = () => {
   const searchParams = useSearchParams();
@@ -109,8 +111,8 @@ const AnouncesList = () => {
           >
             {/* Image */}
             <div className="flex justify-center">
-              <img
-                src="../asset/image/placeholderbook.png"
+              <Image
+                src={PlaceHolderImage}
                 alt={anounce.bookDetails?.title || 'Livre'}
                 className="h-48 w-auto object-contain rounded-md"
               />

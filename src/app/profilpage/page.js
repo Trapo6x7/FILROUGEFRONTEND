@@ -3,6 +3,7 @@ import { useAuth } from "@/src/context/auth-context";
 import AuthService from "@/src/services/auth-service";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import ChillGuyImage from "@/asset/photos/chill_guy1731936768520.png";
 
 export default function Profil() {
   const { user, logout, isAuthenticated, updateUser } = useAuth();
@@ -80,7 +81,7 @@ export default function Profil() {
     setIsLoading(true);
     try {
       const updatedUser = await AuthService.updateProfile(formData);
-      // Mettre à jour l'état global avec les nouvelles données
+      // Mettre à jour l&apos;état global avec les nouvelles données
       updateUser(updatedUser);
       // Mettre à jour le formulaire avec les nouvelles données
       setFormData({
@@ -106,8 +107,8 @@ export default function Profil() {
       <div className="flex justify-center invisible mb-8 lg:visible">
         <h1>
           Bonjour{" "}
-          <span className="text-[#9ba2ff] font-bold">{user.pseudo}</span>,
-          prêt a lire aujourd'hui?
+          <span className="text-[#9ba2ff] font-bold">{user.pseudo}</span>, prêt
+          a lire aujourd&apos;hui?
         </h1>
       </div>
       <div className="flex flex-wrap justify-center gap-1">
@@ -193,7 +194,7 @@ export default function Profil() {
           )
         ) : (
           <p className="text-center text-gray-600">
-            Vous n'avez pas encore de commandes
+            Vous n&apos;avez pas encore de commandes
           </p>
         )}
       </div>
@@ -282,58 +283,60 @@ export default function Profil() {
   );
 
   return (
-<main className="text-secondary-gray bg-[#ffe47b] text-[#333333]">
-  <section className="flex flex-col sm:flex-row p-6 sm:p-10 justify-center items-center gap-6 sm:gap-10">
-    <section className="flex flex-col gap-6 sm:gap-8 w-full sm:w-1/3 md:w-1/4 lg:w-1/6 justify-center items-center">
-      <div className="flex flex-col gap-2 sm:gap-4 items-center justify-start">
-        <Image
-          src="./asset/photos/chill_guy1731936768520.png"
-          alt="user image"
-          className="w-1/3 sm:w-1/2 md:w-1/3"
-        />
-        <h2 className="font-bold text-md sm:text-xl">{user.pseudo}</h2>
-        <p className="font-normal text-sm sm:text-base md:text-lg">{user.email}</p>
-      </div>
+    <main className="text-secondary-gray bg-[#ffe47b] text-[#333333]">
+      <section className="flex flex-col sm:flex-row p-6 sm:p-10 justify-center items-center gap-6 sm:gap-10">
+        <section className="flex flex-col gap-6 sm:gap-8 w-full sm:w-1/3 md:w-1/4 lg:w-1/6 justify-center items-center">
+          <div className="flex flex-col gap-2 sm:gap-4 items-center justify-start">
+            <Image
+              src={ChillGuyImage}
+              alt="user image"
+              className="w-1/3 sm:w-1/2 md:w-1/3"
+            />
+            <h2 className="font-bold text-md sm:text-xl">{user.pseudo}</h2>
+            <p className="font-normal text-sm sm:text-base md:text-lg">
+              {user.email}
+            </p>
+          </div>
 
-      <div className="flex flex-col gap-2 sm:gap-4 items-center justify-start w-full">
-        <button
-          onClick={() => handleSectionChange("dashboard")}
-          className={`text-sm sm:text-base md:text-lg ${
-            activeSection === "dashboard"
-              ? "font-bold text-[#9ba2ff]"
-              : "font-normal text-gray-600 hover:text-[#9ba2ff]"
-          } transition-colors w-full text-center py-3`}
-        >
-          Tableau de bord
-        </button>
-        <button
-          onClick={() => handleSectionChange("editProfile")}
-          className={`text-sm sm:text-base md:text-lg ${
-            activeSection === "editProfile"
-              ? "font-bold text-[#9ba2ff]"
-              : "font-normal text-gray-600 hover:text-[#9ba2ff]"
-          } transition-colors w-full text-center py-3`}
-        >
-          Modifier mon profil
-        </button>
-      </div>
+          <div className="flex flex-col gap-2 sm:gap-4 items-center justify-start w-full">
+            <button
+              onClick={() => handleSectionChange("dashboard")}
+              className={`text-sm sm:text-base md:text-lg ${
+                activeSection === "dashboard"
+                  ? "font-bold text-[#9ba2ff]"
+                  : "font-normal text-gray-600 hover:text-[#9ba2ff]"
+              } transition-colors w-full text-center py-3`}
+            >
+              Tableau de bord
+            </button>
+            <button
+              onClick={() => handleSectionChange("editProfile")}
+              className={`text-sm sm:text-base md:text-lg ${
+                activeSection === "editProfile"
+                  ? "font-bold text-[#9ba2ff]"
+                  : "font-normal text-gray-600 hover:text-[#9ba2ff]"
+              } transition-colors w-full text-center py-3`}
+            >
+              Modifier mon profil
+            </button>
+          </div>
 
-      <div className="flex flex-col gap-2 sm:gap-4 items-center justify-start">
-        <button
-          onClick={handleLogout}
-          className="text-red-600 text-sm sm:text-base md:text-lg font-semibold w-full text-center py-3"
-        >
-          Déconnexion
-        </button>
-      </div>
-    </section>
+          <div className="flex flex-col gap-2 sm:gap-4 items-center justify-start">
+            <button
+              onClick={handleLogout}
+              className="text-red-600 text-sm sm:text-base md:text-lg font-semibold w-full text-center py-3"
+            >
+              Déconnexion
+            </button>
+          </div>
+        </section>
 
-    <section className="w-full sm:w-2/3 md:w-3/6 py-8 sm:py-10">
-      {activeSection === "dashboard" ? renderDashboard() : renderProfileEdit()}
-    </section>
-  </section>
-</main>
-
-
+        <section className="w-full sm:w-2/3 md:w-3/6 py-8 sm:py-10">
+          {activeSection === "dashboard"
+            ? renderDashboard()
+            : renderProfileEdit()}
+        </section>
+      </section>
+    </main>
   );
 }
