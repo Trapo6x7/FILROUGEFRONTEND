@@ -1,5 +1,6 @@
+export const dynamic = 'force-dynamic';
+
 import { Suspense } from 'react';
-import AnouncesList from "@/src/components/anounces/anounceList";
 
 import dynamic from 'next/dynamic';
 
