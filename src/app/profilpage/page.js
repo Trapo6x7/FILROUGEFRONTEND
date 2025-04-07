@@ -288,7 +288,7 @@ export default function Profil() {
         <section className="flex flex-col gap-6 sm:gap-8 w-full sm:w-1/3 md:w-1/4 lg:w-1/6 justify-center items-center">
           <div className="flex flex-col gap-2 sm:gap-4 items-center justify-start">
             <Image
-              src="/asset/photos/chill_guy1731936768520.png"
+              src="public/asset/photos/chill_guy1731936768520.png"
               alt="user image"
               className="w-1/3 sm:w-1/2 md:w-1/3"
             />
