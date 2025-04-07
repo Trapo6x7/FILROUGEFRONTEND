@@ -112,7 +112,7 @@ const AnouncesList = () => {
             {/* Image */}
             <div className="flex justify-center">
               <img
-                src="public/asset/image/placeholderbook.png"
+                src="asset/image/placeholderbook.png"
                 alt={anounce.bookDetails?.title || 'Livre'}
                 className="h-48 w-auto object-contain rounded-md"
               />

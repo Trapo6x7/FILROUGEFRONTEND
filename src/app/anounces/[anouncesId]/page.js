@@ -59,7 +59,7 @@ export default function AnounceDetails({ params }) {
           {/* Colonne de gauche - Image */}
           <div className="flex justify-center items-start">
             <img
-              src="public/asset/image/placeholderbook.png"
+              src="asset/image/placeholderbook.png"
               alt={anounce.bookDetails.title}
               className="rounded-lg shadow-md max-h-[400px]"
             />
