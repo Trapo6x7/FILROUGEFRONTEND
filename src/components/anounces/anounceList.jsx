@@ -5,7 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useCart } from '@/src/context/CartContext'; // Import du contexte
-import PlaceHolderImage from "@/asset/image/placeholderbook.png";
+
 
 
 const AnouncesList = () => {
@@ -112,7 +112,7 @@ const AnouncesList = () => {
             {/* Image */}
             <div className="flex justify-center">
               <Image
-                src={PlaceHolderImage}
+                src="asset/image/placeholderbook.png"
                 alt={anounce.bookDetails?.title || 'Livre'}
                 className="h-48 w-auto object-contain rounded-md"
               />
