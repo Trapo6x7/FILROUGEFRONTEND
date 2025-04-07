@@ -89,8 +89,8 @@ export default function Home() {
       </article>
 
       {isDesktop && (
-        <Image
-          src="./asset/photos/mockupappli.png"
+        <img
+          src="public/asset/photos/mockupappli.png"
           alt="screenshot"
           className="absolute placement h-[80%]"
         />
