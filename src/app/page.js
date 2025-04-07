@@ -75,13 +75,13 @@ export default function Home() {
         </p>
 
         <div className="flex justify-center md:justify-end mt-8 gap-4 md:gap-8 py-10 md:py-16">
-          <Image
-            src="./asset/logoapp/logogooglestore.png"
+          <img
+            src="public/asset/logoapp/logogooglestore.png"
             alt="googleplay"
             className="w-1/3 md:w-1/6 h-auto"
           />
-          <Image
-            src="./asset/logoapp/logoapplestore.png"
+          <img
+            src="public/asset/logoapp/logoapplestore.png"
             alt="appstore"
             className="w-1/3 md:w-1/6 h-auto"
           />
